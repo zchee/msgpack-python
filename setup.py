@@ -28,7 +28,11 @@ except ImportError:
 
 def cythonize(src):
     sys.stderr.write("cythonize: %r\n" % (src,))
-    cython_compiler.compile([src], cplus=True)
+    cython_compiler.compile(
+        [src],
+        cplus=True,
+        compiler_directives={"cdivision": True, "iterable_coroutine": True},
+    )
 
 
 def ensure_source(src):
